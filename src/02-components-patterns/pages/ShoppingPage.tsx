@@ -1,69 +1,47 @@
 import { ProductButtons, ProductCar, ProductImage, ProductTitle } from "../components"
 import '../styles/custom-styles.css'
-import { useShoppingCart } from "../hooks/useShoppingCart";
 import { products } from "../data/products";
 
-export const ShoppingPage = () => {
+const product=products[0];
 
-  const {onProductCountChange,shoppingCart}= useShoppingCart();
+export const ShoppingPage = () => {
 
   return (
     <div >
         <h1>Shopping Store</h1>
         <hr />
-        <div style={{
-            display:'flex',
-            flexDirection:'row',
-            flexWrap:'wrap'
-        }}>
+        
 
-          {
-            products.map(product=>(
-              <ProductCar 
-              product={product}
-              className="bg-dark"
-              key={product.id}
-              onChange={onProductCountChange}
-              value={shoppingCart[product.id]?.count || 0}
-              >
-              
-                <ProductImage className='custom-image'/>
-                <ProductTitle title={'Hello'} className='text-white'/>
-                <ProductButtons className='custom-buttons'/>
-              </ProductCar>
-            ))
-          }
-    
-        </div>
-
-        <div className="shopping-cart">
-
+            <ProductCar 
+            product={product}
+            className="bg-dark text-white"
+            key={product.id}
+            initialValues={{
+              count:4,
+              maxCount:10
+            }}
+            >
               {
-                Object.entries(shoppingCart).map(([key,product])=>(
-                
-                  <ProductCar 
-                  key={key}
-                  product={product}
-                  className="bg-dark"
-                  style={{width:'100px'}}
-                  onChange={onProductCountChange}
-                  value={product.count}
-                  >
-                  
+                ({reset,count,increaseBy,isMaxCountReached})=>(
+                  <>
                     <ProductImage className='custom-image'/>
-                    <ProductButtons 
-                      className='custom-buttons'
-                      style={{
-                        display:'flex',
-                        justifyContent:'center'
-                      }}
-                    />
-                  </ProductCar>
-                ))
-              }
+                    <ProductTitle title={'Hello'} className='text-white'/>
+                    <ProductButtons className='custom-buttons'/>
 
-
-        </div>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={()=>increaseBy(-2)}>-2</button>
+                    {
+                      (!isMaxCountReached && <button onClick={()=>increaseBy(2)}>+2</button>)
+                    }
+                    
+                    <span>{count}</span>
+                  </>
+                )
+              }       
+             
+            </ProductCar>
+ 
+        
 
     </div>
   )
