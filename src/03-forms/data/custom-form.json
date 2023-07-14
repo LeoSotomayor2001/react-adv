@@ -1,0 +1,78 @@
+[
+    {
+        "type":"input",
+        "name":"firstName",
+        "placeholder":"Leodomí",
+        "label":"First Name",
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            },
+            {
+                "type":"minLength",
+                "value":3
+            }
+        ]
+    },
+    {
+        "type":"input",
+        "name":"lastName",
+        "placeholder":"Sotomayor",
+        "label":"Last Name",
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            },
+            {
+                "type":"minLength",
+                "value":4
+            }
+            
+        ]
+    } ,
+    {
+        "type":"email",
+        "name":"email",
+        "placeholder":"Sotoma@gmail.com",
+        "label":"email",
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            }
+            ,
+            {
+                "type":"email"
+                
+            }
+        ]
+    },
+    {
+        "type":"select",
+        "name":"favoriteGame",
+        "label":"Favorite Game",
+        "value":"",
+        "options":[
+            {
+                "id":1,
+                "label":"Resident Evil"
+            },
+            {
+                "id":2,
+                "label":"Super Mario Bros"
+            },
+            {
+                "id":3,
+                "label":"Warframe"
+            }
+        ],
+        "validations":[
+            {
+                "type":"required"
+            }
+        ]
+    }
+
+]
